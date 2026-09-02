@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contoh Mobile-First Design dengan Tailwind CSS">
+  <title>Contoh 03: Responsive Design | Modul 02</title>
+  <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+  <!-- ============================================================
+       📚 CONTOH 03: RESPONSIVE DESIGN (MOBILE-FIRST)
+       ============================================================
+
+       🎯 TUJUAN:
+       Memahami metodologi Mobile-First Design dengan Tailwind CSS.
+
+       💡 KONSEP KUNCI:
+       - Mobile-First: Design untuk mobile dulu, enhance untuk desktop
+       - Breakpoints: Titik di mana layout berubah
+       - Prefix Tailwind: sm:, md:, lg:, xl:, 2xl:
+       - Pola umum: class-default md:class-desktop
+
+       🏷️ BREAKPOINTS TAILWIND:
+       (default) → 0px+ (mobile)
+       sm: → 640px+ (large mobile)
+       md: → 768px+ (tablet)
+       lg: → 1024px+ (laptop)
+       xl: → 1280px+ (desktop)
+       2xl: → 1536px+ (large desktop)
+
+       📱 CARA TEST:
+       1. Buka DevTools (F12)
+       2. Toggle Device Toolbar (Ctrl+Shift+M)
+       3. Pilih device: iPhone SE, iPad, Desktop
+       ============================================================ -->
+
+  <!-- ============================================================
+       NAVBAR RESPONSIF
+       ============================================================
+       Pola Mobile-First untuk navbar:
+       - Mobile: hamburger menu (hidden md:flex untuk menu desktop)
+       - Desktop: horizontal menu
+       ============================================================ -->
+  <header class="bg-white shadow-sm sticky top-0 z-50 border-b">
+    <nav class="container mx-auto px-4 py-4">
+      <div class="flex items-center justify-between">
+
+        <!-- Logo (selalu tampil) -->
+        <div class="flex items-center space-x-2">
+          <span class="text-2xl" aria-hidden="true">📱</span>
+          <h1 class="text-xl font-bold text-primary-700">Toko Digital</h1>
+        </div>
+
+        <!-- Menu Desktop (hidden di mobile, tampil di tablet+) -->
+        <ul class="hidden md:flex space-x-6 text-sm font-medium">
+          <li><a href="#" class="nav-link nav-link-active">Beranda</a></li>
+          <li><a href="#" class="nav-link">Katalog</a></li>
+          <li><a href="#" class="nav-link">Tentang</a></li>
+          <li><a href="#" class="nav-link">Kontak</a></li>
+        </ul>
+
+        <!-- Hamburger Button (tampil di mobile saja) -->
+        <button class="md:hidden text-gray-600 hover:text-primary-600 transition" aria-label="Buka menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container mx-auto px-4 py-8 space-y-8">
+
+    <!-- ============================================================
+         DEMO 1: TIPOGRAFI RESPONSIF
+         ============================================================
+         Ukuran font berubah sesuai breakpoint:
+         - Mobile: text-2xl (24px)
+         - Tablet: md:text-3xl (30px)
+         - Desktop: lg:text-4xl (36px)
+         ============================================================ -->
+    <section class="bg-white rounded-lg shadow-md p-6">
+      <h2 class="text-xl font-bold mb-4 flex items-center">
+        <span class="text-2xl mr-2">📝</span>
+        Demo 1: Tipografi Responsif
+      </h2>
+
+      <p class="text-sm text-gray-600 mb-4">
+        Ukuran font berubah otomatis sesuai ukuran layar.
+        Coba resize browser atau test di DevTools.
+      </p>
+
+      <!-- TIPOGRAFI RESPONSIF -->
+      <div class="space-y-4">
+        <h3 class="text-2xl md:text-3xl lg:text-4xl font-bold">
+          Judul yang Berubah Ukuran
+        </h3>
+        <p class="text-sm md:text-base lg:text-lg text-gray-600 leading-relaxed">
+          Paragraf ini juga berubah ukuran sesuai breakpoint.
+          Mobile: <code class="bg-gray-100 px-1 rounded">text-sm</code> (14px),
+          Tablet: <code class="bg-gray-100 px-1 rounded">text-base</code> (16px),
+          Desktop: <code class="bg-gray-100 px-1 rounded">text-lg</code> (18px).
+        </p>
+      </div>
+
+      <!-- PENJELASAN -->
+      <div class="mt-4 bg-blue-50 border-l-4 border-blue-500 p-4 rounded">
+        <p class="text-sm text-blue-700">
+          <strong>💡 Class yang digunakan:</strong><br>
+          <code class="bg-blue-100 px-1 rounded">text-2xl md:text-3xl lg:text-4xl</code> — judul responsif<br>
+          <code class="bg-blue-100 px-1 rounded">text-sm md:text-base lg:text-lg</code> — paragraf responsif
+        </p>
+      </div>
+
+      <!-- TANTANGAN -->
+      <div class="mt-4 bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded">
+        <p class="text-sm text-yellow-700 font-bold mb-2">🎯 Tantangan untuk Anda:</p>
+        <ol class="list-decimal list-inside text-sm text-yellow-700 space-y-1">
+          <li>Tambahkan breakpoint <code>xl:text-5xl</code> pada judul</li>
+          <li>Buat paragraf dengan <code>text-xs sm:text-sm md:text-base lg:text-lg</code></li>
+          <li>Coba <code>font-normal md:font-bold lg:font-extrabold</code></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         DEMO 2: LAYOUT YANG BERUBAH
+         ============================================================
+         Pola umum Mobile-First:
+         - Mobile: stack vertical (flex-col)
+         - Desktop: side-by-side (md:flex-row)
+         ============================================================ -->
+    <section class="bg-white rounded-lg shadow-md p-6">
+      <h2 class="text-xl font-bold mb-4 flex items-center">
+        <span class="text-2xl mr-2">🎨</span>
+        Demo 2: Layout yang Berubah
+      </h2>
+
+      <p class="text-sm text-gray-600 mb-4">
+        Di mobile: sidebar di atas, main content di bawah (stack).
+        Di desktop: sidebar di kiri, main content di kanan (side-by-side).
+      </p>
+
+      <!-- LAYOUT RESPONSIF -->
+      <div class="flex flex-col md:flex-row gap-6">
+
+        <!-- Sidebar (mobile: full-width atas, desktop: 1/3 kiri) -->
+        <aside class="md:w-1/3 bg-gradient-to-br from-primary-100 to-primary-200 p-6 rounded-lg shadow">
+          <h3 class="font-bold text-lg mb-3 flex items-center">
+            <span class="mr-2">📋</span> Sidebar
+          </h3>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#" class="hover:text-primary-600">• Kategori Produk</a></li>
+            <li><a href="#" class="hover:text-primary-600">• Filter Harga</a></li>
+            <li><a href="#" class="hover:text-primary-600">• Brand</a></li>
+            <li><a href="#" class="hover:text-primary-600">• Rating</a></li>
+          </ul>
+          <p class="text-xs text-gray-600 mt-4">
+            Di mobile: full-width di atas.<br>
+            Di desktop: 1/3 lebar di kiri.
+          </p>
+        </aside>
+
+        <!-- Main Content (mobile: full-width bawah, desktop: 2/3 kanan) -->
+        <div class="md:w-2/3 bg-gradient-to-br from-secondary-100 to-secondary-200 p-6 rounded-lg shadow">
+          <h3 class="font-bold text-lg mb-3 flex items-center">
+            <span class="mr-2">📦</span> Main Content
+          </h3>
+          <p class="text-sm text-gray-700 mb-3">
+            Ini adalah area konten utama. Di mobile, area ini muncul di bawah sidebar.
+            Di desktop, area ini mengambil 2/3 lebar di sebelah kanan.
+          </p>
+          <div class="grid grid-cols-2 gap-3">
+            <div class="bg-white p-3 rounded text-center text-sm">Produk 1</div>
+            <div class="bg-white p-3 rounded text-center text-sm">Produk 2</div>
+            <div class="bg-white p-3 rounded text-center text-sm">Produk 3</div>
+            <div class="bg-white p-3 rounded text-center text-sm">Produk 4</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- PENJELASAN -->
+      <div class="mt-4 bg-green-50 border-l-4 border-green-500 p-4 rounded">
+        <p class="text-sm text-green-700">
+          <strong>💡 Class yang digunakan:</strong><br>
+          <code class="bg-green-100 px-1 rounded">flex flex-col md:flex-row</code> — stack di mobile, row di desktop<br>
+          <code class="bg-green-100 px-1 rounded">md:w-1/3</code> — sidebar 1/3 lebar di desktop<br>
+          <code class="bg-green-100 px-1 rounded">md:w-2/3</code> — main 2/3 lebar di desktop
+        </p>
+      </div>
+
+      <!-- TANTANGAN -->
+      <div class="mt-4 bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded">
+        <p class="text-sm text-yellow-700 font-bold mb-2">🎯 Tantangan untuk Anda:</p>
+        <ol class="list-decimal list-inside text-sm text-yellow-700 space-y-1">
+          <li>Ganti <code>md:w-1/3</code> dengan <code>md:w-1/4</code> → sidebar jadi lebih kecil</li>
+          <li>Tambahkan breakpoint <code>lg:flex-row</code> → layout berubah di layar lebih besar</li>
+          <li>Coba <code>flex-col-reverse md:flex-row</code> → urutan di mobile dibalik</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         DEMO 3: HIDE/SHOW ELEMENT
+         ============================================================
+         Utility untuk menampilkan/menyembunyikan elemen
+         berdasarkan ukuran layar.
+         ============================================================ -->
+    <section class="bg-white rounded-lg shadow-md p-6">
+      <h2 class="text-xl font-bold mb-4 flex items-center">
+        <span class="text-2xl mr-2">👁️</span>
+        Demo 3: Hide/Show Element
+      </h2>
+
+      <p class="text-sm text-gray-600 mb-4">
+        Beberapa elemen hanya tampil di device tertentu.
+        Resize browser untuk melihat perubahannya.
+      </p>
+
+      <!-- HIDE/SHOW ELEMENTS -->
+      <div class="space-y-4">
+
+        <!-- Element 1: Teks berbeda di mobile vs desktop -->
+        <div class="bg-red-100 border-l-4 border-red-500 p-4 rounded">
+          <strong class="hidden md:inline">🖥️ Desktop:</strong>
+          <strong class="md:hidden">📱 Mobile:</strong>
+          <span class="ml-2">Teks ini berbeda di mobile vs desktop</span>
+        </div>
+
+        <!-- Element 2: Hanya tampil di layar besar -->
+        <div class="bg-yellow-100 border-l-4 border-yellow-500 p-4 rounded hidden lg:block">
+          <strong>💻 Hanya tampil di layar besar (lg+):</strong>
+          <span class="ml-2">Element ini disembunyikan di mobile & tablet</span>
+        </div>
+
+        <!-- Element 3: Hanya tampil di mobile & tablet -->
+        <div class="bg-green-100 border-l-4 border-green-500 p-4 rounded lg:hidden">
+          <strong>📱 Hanya tampil di mobile & tablet:</strong>
+          <span class="ml-2">Element ini disembunyikan di desktop</span>
+        </div>
+
+        <!-- Element 4: Tampilan berbeda di 3 breakpoint -->
+        <div class="space-y-2">
+          <div class="bg-blue-100 p-3 rounded block md:hidden">
+            📱 <strong>Mobile Only:</strong> Tampil hanya di mobile
+          </div>
+          <div class="bg-purple-100 p-3 rounded hidden md:block lg:hidden">
+            📱 <strong>Tablet Only:</strong> Tampil hanya di tablet
+          </div>
+          <div class="bg-pink-100 p-3 rounded hidden lg:block">
+            💻 <strong>Desktop Only:</strong> Tampil hanya di desktop
+          </div>
+        </div>
+
+      </div>
+
+      <!-- PENJELASAN -->
+      <div class="mt-4 bg-purple-50 border-l-4 border-purple-500 p-4 rounded">
+        <p class="text-sm text-purple-700">
+          <strong>💡 Pola Hide/Show:</strong><br>
+          <code class="bg-purple-100 px-1 rounded">hidden md:block</code> → hidden di mobile, block di tablet+<br>
+          <code class="bg-purple-100 px-1 rounded">hidden lg:block</code> → hidden di mobile/tablet, block di desktop<br>
+          <code class="bg-purple-100 px-1 rounded">lg:hidden</code> → block di mobile/tablet, hidden di desktop<br>
+          <code class="bg-purple-100 px-1 rounded">block md:hidden</code> → block di mobile, hidden di tablet+
+        </p>
+      </div>
+
+      <!-- TANTANGAN -->
+      <div class="mt-4 bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded">
+        <p class="text-sm text-yellow-700 font-bold mb-2">🎯 Tantangan untuk Anda:</p>
+        <ol class="list-decimal list-inside text-sm text-yellow-700 space-y-1">
+          <li>Buat button yang hanya tampil di mobile: <code>block md:hidden</code></li>
+          <li>Buat banner promo yang hanya tampil di desktop: <code>hidden lg:block</code></li>
+          <li>Buat menu yang berbeda di mobile vs desktop</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         📋 RINGKASAN RESPONSIVE DESIGN
+         ============================================================ -->
+    <section class="bg-white rounded-lg shadow-md p-6">
+      <h2 class="text-xl font-bold mb-4 flex items-center">
+        <span class="text-2xl mr-2">📋</span>
+        Ringkasan Breakpoints Tailwind
+      </h2>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead class="bg-primary-600 text-white">
+            <tr>
+              <th class="p-3 text-left">Prefix</th>
+              <th class="p-3 text-left">Min-width</th>
+              <th class="p-3 text-left">Device</th>
+              <th class="p-3 text-left">Contoh Penggunaan</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y">
+            <tr>
+              <td class="p-3 font-mono text-primary-600">(default)</td>
+              <td class="p-3">0px</td>
+              <td class="p-3">📱 Mobile</td>
+              <td class="p-3">Styling dasar untuk semua device</td>
+            </tr>
+            <tr class="bg-gray-50">
+              <td class="p-3 font-mono text-primary-600">sm:</td>
+              <td class="p-3">640px</td>
+              <td class="p-3">📱 Large Mobile</td>
+              <td class="p-3">Phablet, mobile landscape</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-mono text-primary-600">md:</td>
+              <td class="p-3">768px</td>
+              <td class="p-3">📱 Tablet</td>
+              <td class="p-3">iPad, tablet portrait</td>
+            </tr>
+            <tr class="bg-gray-50">
+              <td class="p-3 font-mono text-primary-600">lg:</td>
+              <td class="p-3">1024px</td>
+              <td class="p-3">💻 Laptop</td>
+              <td class="p-3">Laptop kecil, tablet landscape</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-mono text-primary-600">xl:</td>
+              <td class="p-3">1280px</td>
+              <td class="p-3">💻 Desktop</td>
+              <td class="p-3">Laptop besar, desktop</td>
+            </tr>
+            <tr class="bg-gray-50">
+              <td class="p-3 font-mono text-primary-600">2xl:</td>
+              <td class="p-3">1536px</td>
+              <td class="p-3">🖥️ Large Desktop</td>
+              <td class="p-3">Monitor besar, 4K</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- TIPS RESPONSIVE -->
+      <div class="mt-6 bg-blue-50 border-l-4 border-blue-500 p-4 rounded">
+        <p class="text-sm text-blue-700 font-bold mb-2">💡 Tips Mobile-First Design:</p>
+        <ul class="list-disc list-inside text-sm text-blue-700 space-y-1">
+          <li>Tulis styling mobile <strong>tanpa prefix</strong> dulu</li>
+          <li>Tambahkan prefix untuk layar lebih besar (<code>md:</code>, <code>lg:</code>)</li>
+          <li>Test di DevTools dengan berbagai device</li>
+          <li>Prioritaskan konten penting di mobile</li>
+          <li>Gunakan <code>hidden</code>/<code>block</code> untuk hide/show element</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         🎯 TANTANGAN AKHIR
+         ============================================================ -->
+    <section class="bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-lg shadow-md p-6">
+      <h2 class="text-xl font-bold mb-4 flex items-center">
+        <span class="text-2xl mr-2">🏆</span>
+        Tantangan Akhir: Halaman Produk Responsif
+      </h2>
+
+      <p class="text-sm mb-4">
+        Buat halaman detail produk yang responsif:
+      </p>
+
+      <ol class="list-decimal list-inside text-sm space-y-2 mb-4">
+        <li><strong>Mobile:</strong> Gambar di atas, detail di bawah (stack vertical)</li>
+        <li><strong>Desktop:</strong> Gambar di kiri (1/2), detail di kanan (1/2)</li>
+        <li><strong>Tipografi:</strong> Font kecil di mobile, besar di desktop</li>
+        <li><strong>Button:</strong> Full-width di mobile, auto-width di desktop</li>
+      </ol>
+
+      <div class="bg-white/20 backdrop-blur-sm p-4 rounded">
+        <p class="text-sm">
+          <strong>💡 Template:</strong><br>
+          <code class="bg-white/30 px-1 rounded">flex flex-col md:flex-row gap-8</code><br>
+          <code class="bg-white/30 px-1 rounded">md:w-1/2</code> untuk gambar dan detail<br>
+          <code class="bg-white/30 px-1 rounded">text-2xl md:text-4xl</code> untuk judul
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bg-gray-900 text-white py-6 mt-8">
+    <div class="container mx-auto px-4 text-center">
+      <p class="text-sm text-gray-400">
+        📱 Contoh 03: Responsive Design | Modul 02 - CSS3 & Tailwind CSS
+      </p>
+      <p class="text-xs text-gray-500 mt-2">
+        Test di DevTools (F12) → Toggle Device Toolbar (Ctrl+Shift+M)
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>

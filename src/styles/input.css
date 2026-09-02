@@ -1,0 +1,11 @@
+@import "tailwindcss";
+:root {
+  --warna-body: #5802ed;
+  --warna-header: #bba4ff;
+  --warna-produk: #2e0881;
+  --warna-utama: #0251db;
+  --warna-sekunder: #22c55e;
+  --warna-kartu: #f8f3f3;
+  --warna-harga: #0066ff;
+  --warna-teks: #1f1f1f;
+}

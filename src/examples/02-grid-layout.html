@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contoh penggunaan CSS Grid untuk layout E-Commerce">
+  <title>Contoh 02: Grid Layout | Modul 02</title>
+  <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+  <!-- ============================================================
+       📚 CONTOH 02: CSS GRID LAYOUT
+       ============================================================
+
+       🎯 TUJUAN:
+       Memahami konsep CSS Grid untuk layout 2 dimensi (baris DAN kolom).
+
+       💡 KONSEP KUNCI:
+       - Grid Container: elemen parent dengan display: grid
+       - Grid Items: elemen child di dalam container
+       - Grid Lines: garis pembatas kolom/baris
+       - Grid Tracks: kolom atau baris
+       - Grid Cells: intersection kolom & baris
+
+       🏷️ PROPERTI PENTING:
+       Container: grid-template-columns, grid-template-rows, gap
+       Items: grid-column, grid-row, justify-self, align-self
+
+       🎮 GAME RECOMMENDED:
+       https://cssgridgarden.com/ (28 level, ~30 menit)
+       ============================================================ -->
+
+  <header class="bg-white shadow-sm border-b">
+    <div class="container mx-auto px-4 py-4">
+      <h1 class="text-2xl font-bold text-primary-700">
+        🎯 Contoh 02: Grid Layout
+      </h1>
+      <p class="text-sm text-gray-600 mt-1">
+        Layout 2 dimensi untuk katalog produk, dashboard, dan layout kompleks
+      </p>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 py-8 space-y-8">
+
+    <!-- ============================================================
+         DEMO 1: GRID DASAR 3 KOLOM
+         ============================================================
+         Grid paling dasar: definisikan jumlah kolom, items otomatis
+         akan mengisi kolom secara berurutan.
+         ============================================================ -->
+    <section class="bg-white rounded-lg shadow-md p-6">
+      <h2 class="text-xl font-bold mb-4 flex items-center">
+        <span class="text-2xl mr-2">🎯</span>
+        Demo 1: Grid Dasar 3 Kolom
+      </h2>
+
+      <p class="text-sm text-gray-600 mb-4">
+        Class <code>grid-cols-3</code> membuat 3 kolom dengan lebar sama.
+        Items otomatis mengisi dari kiri ke kanan, atas ke bawah.
+      </p>
+
+      <!-- GRID 3 KOLOM -->
+      <div class="grid grid-cols-3 gap-4">
+        <div class="bg-primary-100 p-6 rounded text-center font-bold">1</div>
+        <div class="bg-primary-200 p-6 rounded text-center font-bold">2</div>
+        <div class="bg-primary-300 p-6 rounded text-center font-bold">3</div>
+        <div class="bg-primary-400 p-6 rounded text-center font-bold">4</div>
+        <div class="bg-primary-500 p-6 rounded text-center font-bold text-white">5</div>
+        <div class="bg-primary-600 p-6 rounded text-center font-bold text-white">6</div>
+        <div class="bg-primary-700 p-6 rounded text-center font-bold text-white">7</div>
+        <div class="bg-primary-800 p-6 rounded text-center font-bold text-white">8</div>
+        <div class="bg-primary-900 p-6 rounded text-center font-bold text-white">9</div>
+      </div>
+
+      <!-- PENJELASAN -->
+      <div class="mt-4 bg-blue-50 border-l-4 border-blue-500 p-4 rounded">
+        <p class="text-sm text-blue-700">
+          <strong>💡 Class yang digunakan:</strong><br>
+          <code class="bg-blue-100 px-1 rounded">grid</code> — aktifkan Grid<br>
+          <code class="bg-blue-100 px-1 rounded">grid-cols-3</code> — 3 kolom<br>
+          <code class="bg-blue-100 px-1 rounded">gap-4</code> — jarak 1rem antar items
+        </p>
+      </div>
+
+      <!-- TANTANGAN -->
+      <div class="mt-4 bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded">
+        <p class="text-sm text-yellow-700 font-bold mb-2">🎯 Tantangan untuk Anda:</p>
+        <ol class="list-decimal list-inside text-sm text-yellow-700 space-y-1">
+          <li>Ganti <code>grid-cols-3</code> dengan <code>grid-cols-2</code> → apa yang terjadi?</li>
+          <li>Ganti dengan <code>grid-cols-4</code> → apa yang terjadi?</li>
+          <li>Ganti dengan <code>grid-cols-6</code> → apa yang terjadi?</li>
+          <li>Ganti <code>gap-4</code> dengan <code>gap-8</code> → apa yang terjadi?</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         DEMO 2: GRID RESPONSIF UNTUK KATALOG
+         ============================================================
+         Grid responsif adalah kekuatan utama untuk E-Commerce.
+         Dengan breakpoint Tailwind, kita bisa:
+         - Mobile: 1 kolom
+         - Tablet: 2 kolom
+         - Desktop: 3 kolom
+         ============================================================ -->
+    <section class="bg-white rounded-lg shadow-md p-6">
+      <h2 class="text-xl font-bold mb-4 flex items-center">
+        <span class="text-2xl mr-2">📱</span>
+        Demo 2: Grid Responsif untuk Katalog
+      </h2>
+
+      <p class="text-sm text-gray-600 mb-4">
+        Ini adalah pola yang paling sering dipakai di E-Commerce.
+        Grid otomatis menyesuaikan jumlah kolom berdasarkan ukuran layar.
+      </p>
+
+      <!-- GRID RESPONSIF -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Produk 1 -->
+        <article class="bg-white border border-gray-200 rounded-lg overflow-hidden shadow hover:shadow-xl transition group">
+          <div class="overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1603302576832-01eb16b7a5b8?w=400&h=250&fit=crop"
+              alt="Laptop Gaming"
+              class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+            >
+          </div>
+          <div class="p-4">
+            <div class="flex justify-between items-center mb-2">
+              <span class="badge badge-primary">Gaming</span>
+              <span class="text-xs text-gray-500">⭐ 4.8</span>
+            </div>
+            <h3 class="font-bold text-lg mb-1">Laptop Gaming ASUS ROG</h3>
+            <p class="text-sm text-gray-600 mb-3 line-clamp-2">
+              Performa tinggi untuk gaming profesional dengan Intel Core i7
+            </p>
+            <div class="flex justify-between items-center">
+              <div>
+                <span class="text-xl font-bold text-secondary-600">Rp 15.000.000</span>
+                <span class="text-xs text-gray-400 line-through block">Rp 17.000.000</span>
+              </div>
+              <button class="bg-primary-600 text-white px-4 py-2 rounded hover:bg-primary-700 transition text-sm">
+                Beli
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Produk 2 -->
+        <article class="bg-white border border-gray-200 rounded-lg overflow-hidden shadow hover:shadow-xl transition group">
+          <div class="overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400&h=250&fit=crop"
+              alt="Mouse Wireless"
+              class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+            >
+          </div>
+          <div class="p-4">
+            <div class="flex justify-between items-center mb-2">
+              <span class="badge badge-secondary">Aksesoris</span>
+              <span class="text-xs text-gray-500">⭐ 4.6</span>
+            </div>
+            <h3 class="font-bold text-lg mb-1">Mouse Wireless Logitech</h3>
+            <p class="text-sm text-gray-600 mb-3 line-clamp-2">
+              Ergonomis dan presisi, cocok untuk kerja dan gaming
+            </p>
+            <div class="flex justify-between items-center">
+              <span class="text-xl font-bold text-secondary-600">Rp 250.000</span>
+              <button class="bg-primary-600 text-white px-4 py-2 rounded hover:bg-primary-700 transition text-sm">
+                Beli
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Produk 3 -->
+        <article class="bg-white border border-gray-200 rounded-lg overflow-hidden shadow hover:shadow-xl transition group">
+          <div class="overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400&h=250&fit=crop"
+              alt="Keyboard Mechanical"
+              class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+            >
+          </div>
+          <div class="p-4">
+            <div class="flex justify-between items-center mb-2">
+              <span class="badge badge-accent">Hot</span>
+              <span class="text-xs text-gray-500">⭐ 4.9</span>
+            </div>
+            <h3 class="font-bold text-lg mb-1">Keyboard Mechanical RGB</h3>
+            <p class="text-sm text-gray-600 mb-3 line-clamp-2">
+              Switch blue dengan RGB lighting, perfect untuk gaming
+            </p>
+            <div class="flex justify-between items-center">
+              <span class="text-xl font-bold text-secondary-600">Rp 750.000</span>
+              <button class="bg-primary-600 text-white px-4 py-2 rounded hover:bg-primary-700 transition text-sm">
+                Beli
+              </button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- PENJELASAN -->
+      <div class="mt-4 bg-green-50 border-l-4 border-green-500 p-4 rounded">
+        <p class="text-sm text-green-700">
+          <strong>💡 Class yang digunakan:</strong><br>
+          <code class="bg-green-100 px-1 rounded">grid-cols-1</code> → Mobile (1 kolom)<br>
+          <code class="bg-green-100 px-1 rounded">md:grid-cols-2</code> → Tablet (2 kolom, min-width 768px)<br>
+          <code class="bg-green-100 px-1 rounded">lg:grid-cols-3</code> → Desktop (3 kolom, min-width 1024px)<br><br>
+          <strong>📱 Test responsive:</strong> Buka DevTools (F12) → Toggle Device Toolbar (Ctrl+Shift+M)
+        </p>
+      </div>
+
+      <!-- TANTANGAN -->
+      <div class="mt-4 bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded">
+        <p class="text-sm text-yellow-700 font-bold mb-2">🎯 Tantangan untuk Anda:</p>
+        <ol class="list-decimal list-inside text-sm text-yellow-700 space-y-1">
+          <li>Tambahkan breakpoint <code>xl:grid-cols-4</code> → 4 kolom di layar sangat besar</li>
+          <li>Tambahkan produk ke-4, ke-5, ke-6 → grid otomatis menyesuaikan</li>
+          <li>Ganti <code>gap-6</code> dengan <code>gap-2</code> → kartu lebih rapat</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         DEMO 3: GRID DENGAN SPANNING
+         ============================================================
+         Grid memungkinkan item untuk "melebar" (span) beberapa
+         kolom atau baris. Berguna untuk featured product, banner, dll.
+         ============================================================ -->
+    <section class="bg-white rounded-lg shadow-md p-6">
+      <h2 class="text-xl font-bold mb-4 flex items-center">
+        <span class="text-2xl mr-2">🎨</span>
+        Demo 3: Grid dengan Spanning
+      </h2>
+
+      <p class="text-sm text-gray-600 mb-4">
+        Item bisa "melebar" beberapa kolom (<code>col-span-2</code>) atau
+        beberapa baris (<code>row-span-2</code>).
+      </p>
+
+      <!-- GRID DENGAN SPANNING -->
+      <div class="grid grid-cols-4 gap-4">
+
+        <!-- Featured Product (melebar 2 kolom) -->
+        <div class="col-span-2 bg-gradient-to-br from-accent-500 to-accent-600 text-white p-6 rounded-lg shadow-lg">
+          <h3 class="text-2xl font-bold mb-2">🔥 Featured Product</h3>
+          <p class="text-sm opacity-90 mb-4">
+            Laptop Gaming ASUS ROG dengan diskon 20%
+          </p>
+          <button class="bg-white text-accent-600 px-4 py-2 rounded font-bold hover:bg-gray-100 transition">
+            Lihat Detail
+          </button>
+        </div>
+
+        <!-- Produk kecil 1 -->
+        <div class="bg-primary-100 p-4 rounded text-center">
+          <div class="text-3xl mb-2">🖱️</div>
+          <p class="text-sm font-bold">Mouse</p>
+        </div>
+
+        <!-- Produk kecil 2 -->
+        <div class="bg-primary-200 p-4 rounded text-center">
+          <div class="text-3xl mb-2">⌨️</div>
+          <p class="text-sm font-bold">Keyboard</p>
+        </div>
+
+        <!-- Produk kecil 3 -->
+        <div class="bg-primary-300 p-4 rounded text-center">
+          <div class="text-3xl mb-2">🎧</div>
+          <p class="text-sm font-bold">Headset</p>
+        </div>
+
+        <!-- Promo Banner (melebar 2 kolom & 2 baris) -->
+        <div class="col-span-2 row-span-2 bg-gradient-to-br from-secondary-500 to-secondary-600 text-white p-6 rounded-lg shadow-lg flex flex-col justify-center items-center">
+          <div class="text-5xl mb-4">🎉</div>
+          <h3 class="text-3xl font-bold mb-2">PROMO BESAR!</h3>
+          <p class="text-center opacity-90 mb-4">
+            Diskon hingga 50% untuk semua produk gaming
+          </p>
+          <button class="bg-white text-secondary-600 px-6 py-3 rounded font-bold hover:bg-gray-100 transition">
+            Belanja Sekarang
+          </button>
+        </div>
+
+        <!-- Produk kecil 4 -->
+        <div class="bg-primary-400 p-4 rounded text-center">
+          <div class="text-3xl mb-2">📱</div>
+          <p class="text-sm font-bold">Smartphone</p>
+        </div>
+
+        <!-- Produk kecil 5 -->
+        <div class="bg-primary-500 p-4 rounded text-center text-white">
+          <div class="text-3xl mb-2">💻</div>
+          <p class="text-sm font-bold">Laptop</p>
+        </div>
+
+      </div>
+
+      <!-- PENJELASAN -->
+      <div class="mt-4 bg-purple-50 border-l-4 border-purple-500 p-4 rounded">
+        <p class="text-sm text-purple-700">
+          <strong>💡 Class yang digunakan:</strong><br>
+          <code class="bg-purple-100 px-1 rounded">col-span-2</code> — item melebar 2 kolom<br>
+          <code class="bg-purple-100 px-1 rounded">row-span-2</code> — item melebar 2 baris<br>
+          <code class="bg-purple-100 px-1 rounded">grid-cols-4</code> — grid 4 kolom sebagai base
+        </p>
+      </div>
+
+      <!-- TANTANGAN -->
+      <div class="mt-4 bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded">
+        <p class="text-sm text-yellow-700 font-bold mb-2">🎯 Tantangan untuk Anda:</p>
+        <ol class="list-decimal list-inside text-sm text-yellow-700 space-y-1">
+          <li>Ganti <code>col-span-2</code> dengan <code>col-span-3</code> pada Featured Product</li>
+          <li>Tambahkan <code>row-span-3</code> pada Promo Banner → apa yang terjadi?</li>
+          <li>Buat layout dashboard dengan sidebar (1 kolom) + main content (3 kolom)</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         📋 RINGKASAN CSS GRID
+         ============================================================ -->
+    <section class="bg-white rounded-lg shadow-md p-6">
+      <h2 class="text-xl font-bold mb-4 flex items-center">
+        <span class="text-2xl mr-2">📋</span>
+        Ringkasan CSS Grid
+      </h2>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead class="bg-primary-600 text-white">
+            <tr>
+              <th class="p-3 text-left">Properti</th>
+              <th class="p-3 text-left">Fungsi</th>
+              <th class="p-3 text-left">Contoh Tailwind</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y">
+            <tr>
+              <td class="p-3 font-mono text-primary-600">display: grid</td>
+              <td class="p-3">Aktifkan Grid</td>
+              <td class="p-3"><code>grid</code></td>
+            </tr>
+            <tr class="bg-gray-50">
+              <td class="p-3 font-mono text-primary-600">grid-template-columns</td>
+              <td class="p-3">Definisi kolom</td>
+              <td class="p-3"><code>grid-cols-3</code>, <code>grid-cols-[1fr_2fr]</code></td>
+            </tr>
+            <tr>
+              <td class="p-3 font-mono text-primary-600">gap</td>
+              <td class="p-3">Jarak antar items</td>
+              <td class="p-3"><code>gap-4</code>, <code>gap-6</code></td>
+            </tr>
+            <tr class="bg-gray-50">
+              <td class="p-3 font-mono text-primary-600">grid-column</td>
+              <td class="p-3">Span kolom</td>
+              <td class="p-3"><code>col-span-2</code></td>
+            </tr>
+            <tr>
+              <td class="p-3 font-mono text-primary-600">grid-row</td>
+              <td class="p-3">Span baris</td>
+              <td class="p-3"><code>row-span-2</code></td>
+            </tr>
+            <tr class="bg-gray-50">
+              <td class="p-3 font-mono text-primary-600">justify-self</td>
+              <td class="p-3">Alignment horizontal</td>
+              <td class="p-3"><code>justify-self-center</code></td>
+            </tr>
+            <tr>
+              <td class="p-3 font-mono text-primary-600">align-self</td>
+              <td class="p-3">Alignment vertical</td>
+              <td class="p-3"><code>align-self-start</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- PERBEDAAN FLEXBOX VS GRID -->
+      <div class="mt-6 bg-blue-50 border-l-4 border-blue-500 p-4 rounded">
+        <p class="text-sm text-blue-700 font-bold mb-2">🤔 Flexbox vs Grid: Kapan Pakai yang Mana?</p>
+        <ul class="list-disc list-inside text-sm text-blue-700 space-y-1">
+          <li><strong>Flexbox:</strong> Layout 1 dimensi (baris ATAU kolom) — navigasi, kartu produk, centering</li>
+          <li><strong>Grid:</strong> Layout 2 dimensi (baris DAN kolom) — katalog produk, dashboard, layout kompleks</li>
+          <li><strong>Rule of thumb:</strong> Jika layout bisa digambar dengan 1 garis → Flexbox. Jika butuh grid → Grid.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         🎯 TANTANGAN AKHIR
+         ============================================================ -->
+    <section class="bg-gradient-to-r from-secondary-500 to-secondary-600 text-white rounded-lg shadow-md p-6">
+      <h2 class="text-xl font-bold mb-4 flex items-center">
+        <span class="text-2xl mr-2">🏆</span>
+        Tantangan Akhir: Dashboard E-Commerce
+      </h2>
+
+      <p class="text-sm mb-4">
+        Buat layout dashboard E-Commerce dengan CSS Grid:
+      </p>
+
+      <ol class="list-decimal list-inside text-sm space-y-2 mb-4">
+        <li>Header full-width (4 kolom)</li>
+        <li>Sidebar kiri (1 kolom, 3 baris)</li>
+        <li>Main content (3 kolom, 2 baris) — berisi statistik</li>
+        <li>Footer full-width (4 kolom)</li>
+      </ol>
+
+      <div class="bg-white/20 backdrop-blur-sm p-4 rounded">
+        <p class="text-sm">
+          <strong>💡 Tips:</strong> Gunakan <code>grid-cols-4</code> sebagai base,
+          lalu <code>col-span-*</code> untuk item yang melebar.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bg-gray-900 text-white py-6 mt-8">
+    <div class="container mx-auto px-4 text-center">
+      <p class="text-sm text-gray-400">
+        🎯 Contoh 02: Grid Layout | Modul 02 - CSS3 & Tailwind CSS
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>
+

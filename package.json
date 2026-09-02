@@ -1,0 +1,36 @@
+{
+  "name": "modul-02-tailwind-css",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Modul 02 - CSS3 & Tailwind CSS Dasar untuk E-Commerce",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint src --ext .ts,.tsx",
+    "format": "prettier --write src/"
+  },
+  "keywords": [
+    "css3",
+    "tailwindcss",
+    "flexbox",
+    "grid",
+    "responsive",
+    "mobile-first",
+    "e-commerce"
+  ],
+  "author": "Web Development Modern Course",
+  "license": "MIT",
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
+    "typescript": "^5.6.2",
+    "vite": "^5.4.8"
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "tailwindcss": "^4.3.3"
+  }
+}
