@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/src/praktikum/tugas-01.html"
+    }
+  ]
+}
