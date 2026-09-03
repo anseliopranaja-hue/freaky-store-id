@@ -1,34 +1,385 @@
 <!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tugas 02: Navigasi Responsif</title>
-  <link rel="stylesheet" href="../styles/main.css">
-</head>
-<body class="bg-gray-50">
-  <!--
-    🎯 TUGAS 02: NAVIGASI RESPONSIF
-    ================================
-    Instruksi:
-    1. Buat navbar responsif dengan Tailwind CSS
-    2. Mobile: hamburger menu (toggle)
-    3. Desktop: horizontal menu
-    4. Gunakan Flexbox untuk layout
-    5. Tambahkan dropdown untuk kategori produk
 
-    Setiap save, browser akan auto-refresh (Vite HMR)
-  -->
+<html lang="id"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>FREAKY STORE ID V2</title> <link rel="stylesheet" href="../styles/main.css"> <link rel="icon" href="logo.jpg"> </head>
 
-  <header class="bg-white shadow-sm border-b border-gray-200">
-    <nav class="container mx-auto px-4 py-4">
-      <h1 class="text-xl font-bold">Tugas 02 - Navigasi Responsif</h1>
-    </nav>
-  </header>
+<body class="bg-[#5802ed] text-white">
 
-  <main class="container mx-auto px-4 py-8">
-    <!-- TODO: Buat navigasi responsif di sini -->
-    <p class="text-gray-600 text-center">Mulai coding navigasi di sini...</p>
-  </main>
-</body>
-</html>
+<header class="bg-[#bba4ff] shadow-sm border-b border-gray-200"> <nav class="container mx-auto px-4 py-4">
+
+  <div class="flex items-center justify-between">
+
+    <div class="flex items-center gap-3">
+      <img src="logo.jpg" alt="Logo FREAKY STORE ID" class="w-12 h-12 rounded-full object-cover">
+
+      <h1 class="text-xl font-bold text-[#1f1f1f]">
+        FREAKY STORE ID
+      </h1>
+    </div>
+
+    <button id="menu-btn" class="md:hidden text-[#1f1f1f] text-2xl" aria-label="Buka menu">
+      ☰
+    </button>
+
+    <ul class="hidden md:flex items-center gap-6 text-sm font-medium text-[#1f1f1f]">
+
+      <li>
+        <a href="#" class="hover:text-blue-600">
+          Home
+        </a>
+      </li>
+
+      <li class="relative">
+
+        <button id="produk-btn" class="hover:text-blue-600 flex items-center gap-1">
+          Produk
+          <span>▼</span>
+        </button>
+
+        <ul id="produk-menu" class="hidden absolute left-0 top-full mt-2 bg-white border border-gray-200 shadow-lg rounded-lg w-56 z-10 text-[#1f1f1f]">
+
+          <li>
+            <button data-product="produk1" class="product-btn w-full text-left block px-4 py-3 hover:bg-gray-100">
+              AKUN BLOOD STRIKE
+            </button>
+          </li>
+
+          <li>
+            <button data-product="produk2" class="product-btn w-full text-left block px-4 py-3 hover:bg-gray-100">
+              AKUN ML
+            </button>
+          </li>
+
+          <li>
+            <button data-product="produk4" class="product-btn w-full text-left block px-4 py-3 hover:bg-gray-100">
+              AKUN ML
+            </button>
+          </li>
+
+          <li>
+            <button data-product="produk5" class="product-btn w-full text-left block px-4 py-3 hover:bg-gray-100">
+              BLOOD STRIKE PREMIUM
+            </button>
+          </li>
+
+          <li>
+            <button data-product="produk6" class="product-btn w-full text-left block px-4 py-3 hover:bg-gray-100">
+              BLOOD STRIKE PREMIUM
+            </button>
+          </li>
+
+        </ul>
+      </li>
+
+      <li>
+        <a href="#tentang" class="hover:text-blue-600">
+          Tentang Kami
+        </a>
+      </li>
+
+      <li>
+        <a href="#kontak" class="hover:text-blue-600">
+          Kontak
+        </a>
+      </li>
+
+    </ul>
+  </div>
+
+  <ul id="mobile-menu" class="hidden md:hidden mt-4 border-t border-gray-200 pt-4 space-y-2 text-[#1f1f1f]">
+
+    <li>
+      <a href="#" class="block px-4 py-3 rounded-lg hover:bg-gray-100">
+        Home
+      </a>
+    </li>
+
+    <li>
+
+      <button id="mobile-produk-btn" class="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-100 flex justify-between">
+        Produk
+        <span>▼</span>
+      </button>
+
+      <ul id="mobile-produk-menu" class="hidden ml-4 mt-2 space-y-1">
+
+        <li>
+          <button data-product="produk1" class="mobile-product-btn w-full text-left px-4 py-2 rounded-lg hover:bg-gray-100">
+            AKUN BLOOD STRIKE
+          </button>
+        </li>
+
+        <li>
+          <button data-product="produk2" class="mobile-product-btn w-full text-left px-4 py-2 rounded-lg hover:bg-gray-100">
+            AKUN ML
+          </button>
+        </li>
+
+        <li>
+          <button data-product="produk4" class="mobile-product-btn w-full text-left px-4 py-2 rounded-lg hover:bg-gray-100">
+            AKUN ML
+          </button>
+        </li>
+
+        <li>
+          <button data-product="produk5" class="mobile-product-btn w-full text-left px-4 py-2 rounded-lg hover:bg-gray-100">
+            BLOOD STRIKE PREMIUM
+          </button>
+        </li>
+
+        <li>
+          <button data-product="produk6" class="mobile-product-btn w-full text-left px-4 py-2 rounded-lg hover:bg-gray-100">
+            BLOOD STRIKE PREMIUM
+          </button>
+        </li>
+
+      </ul>
+    </li>
+
+    <li>
+      <a href="#tentang" class="block px-4 py-3 rounded-lg hover:bg-gray-100">
+        Tentang Kami
+      </a>
+    </li>
+
+    <li>
+      <a href="#kontak" class="block px-4 py-3 rounded-lg hover:bg-gray-100">
+        Kontak
+      </a>
+    </li>
+
+  </ul>
+</nav>
+
+</header>
+
+<main>
+
+<section class="text-white">
+
+  <div class="container mx-auto px-4 py-12 md:py-16 text-center">
+
+    <h2 class="text-3xl md:text-5xl font-bold mb-4">
+      Selamat Datang di FREAKY STORE ID
+    </h2>
+
+    <p class="text-base md:text-xl mb-8">
+      Temukan akun ML dan BLOOD STRIKE menarik di sini!
+    </p>
+
+    <div class="flex flex-col sm:flex-row justify-center gap-4">
+
+      <a href="#produk" class="bg-[#0251db] text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-800">
+        Jelajahi Produk
+      </a>
+
+      <a href="#kontak" class="bg-[#22c55e] text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700">
+        Belanja Sekarang
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section id="tentang" class="py-10 md:py-12">
+
+  <div class="container mx-auto px-4">
+
+    <div class="bg-[#0251db] rounded-lg shadow-md p-6 md:p-8">
+
+      <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 text-white">
+        Tentang Kami
+      </h2>
+
+      <p class="text-white text-center max-w-3xl mx-auto leading-relaxed">
+        Kami menyediakan akun mobile legends dan Blood Strike
+        dengan layanan cepat dan aman. Setiap transaksi dijaga
+        privasinya dan dukungan kami siap membantu kapan saja.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section id="produk" class="py-10 md:py-12 bg-[#2e0881]">
+
+  <div class="container mx-auto px-4">
+
+    <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 text-white">
+      Produk Kami
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <article id="produk1" class="product-card bg-[#f8f3f3] rounded-lg shadow-md overflow-hidden hover:shadow-xl transition">
+
+        <img src="produk1.jpg" alt="Akun BLOOD STRIKE" class="w-full h-48 md:h-52 object-cover">
+
+        <div class="p-5">
+
+          <h3 class="text-xl font-bold mb-3 text-[#1f1f1f]">
+            AKUN BLOOD STRIKE
+          </h3>
+
+          <p class="text-[#0066ff] text-lg font-bold mb-4">
+            Rp 450.000
+          </p>
+
+          <a href="#kontak" class="block text-center bg-[#0251db] text-white py-2 rounded-lg hover:bg-blue-800">
+            Beli Sekarang
+          </a>
+
+        </div>
+
+      </article>
+
+      <article id="produk2" class="product-card bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition">
+
+        <img src="produk2.jpg" alt="Akun ML" class="w-full h-48 md:h-52 object-cover">
+
+        <div class="p-5">
+
+          <h3 class="text-xl font-bold mb-3 text-[#1f1f1f]">
+            AKUN ML
+          </h3>
+
+          <p class="text-[#0066ff] text-lg font-bold mb-4">
+            Rp 1.500.000
+          </p>
+
+          <a href="#kontak" class="block text-center bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">
+            Beli Sekarang
+          </a>
+
+        </div>
+
+      </article>
+
+      <article id="produk4" class="product-card bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition">
+
+        <img src="produk4.jpg" alt="Akun ML" class="w-full h-48 md:h-52 object-cover">
+
+        <div class="p-5">
+
+          <h3 class="text-xl font-bold mb-3 text-[#1f1f1f]">
+            AKUN ML
+          </h3>
+
+          <p class="text-[#0066ff] text-lg font-bold mb-4">
+            Rp 2.200.000
+          </p>
+
+          <a href="#kontak" class="block text-center bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">
+            Beli Sekarang
+          </a>
+
+        </div>
+
+      </article>
+
+      <article id="produk5" class="product-card bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition">
+
+        <img src="produk5.jpg" alt="Akun BLOOD STRIKE Premium" class="w-full h-48 md:h-52 object-cover">
+
+        <div class="p-5">
+
+          <h3 class="text-xl font-bold mb-3 text-[#1f1f1f]">
+            AKUN BLOOD STRIKE PREMIUM
+          </h3>
+
+          <p class="text-[#0066ff] text-lg font-bold mb-4">
+            Rp 380.000
+          </p>
+
+          <a href="#kontak" class="block text-center bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">
+            Beli Sekarang
+          </a>
+
+        </div>
+
+      </article>
+
+      <article id="produk6" class="product-card bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition">
+
+        <img src="produk6.jpg" alt="Akun BLOOD STRIKE" class="w-full h-48 md:h-52 object-cover">
+
+        <div class="p-5">
+
+          <h3 class="text-xl font-bold mb-3 text-[#1f1f1f]">
+            AKUN BLOOD STRIKE PREMIUM
+          </h3>
+
+          <p class="text-[#0066ff] text-lg font-bold mb-4">
+            Rp 2.000.000
+          </p>
+
+          <a href="#kontak" class="block text-center bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">
+            Beli Sekarang
+          </a>
+
+        </div>
+
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+<footer id="kontak" class="bg-[#bba4ff] text-[#1f1f1f] py-8 mt-12">
+
+<div class="container mx-auto px-4">
+
+  <div class="grid grid-cols-1 md:grid-cols-3 items-center text-center gap-4">
+
+    <div class="md:text-left">
+
+      <p class="text-xl font-bold">
+        EMAIL
+      </p>
+
+      <p>
+        freakystore@gmail.com
+      </p>
+
+    </div>
+
+    <div>
+
+      <h3 class="text-xl font-bold">
+        FREAKY STORE ID
+      </h3>
+
+      <p class="mt-2">
+        &copy; 2026 FREAKY STORE ID
+      </p>
+
+    </div>
+
+    <div class="md:text-right">
+
+      <p class="text-xl font-bold">
+        NO. TELEPON
+      </p>
+
+      <p>
+        0838-2789-2023
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
+
+</footer>
+
+<script> const menuBtn = document.getElementById("menu-btn"); const mobileMenu = document.getElementById("mobile-menu"); const produkBtn = document.getElementById("produk-btn"); const produkMenu = document.getElementById("produk-menu"); const mobileProdukBtn = document.getElementById("mobile-produk-btn"); const mobileProdukMenu = document.getElementById("mobile-produk-menu"); const productButtons = document.querySelectorAll(".product-btn"); const mobileProductButtons = document.querySelectorAll(".mobile-product-btn"); const productCards = document.querySelectorAll(".product-card"); menuBtn.addEventListener("click", function() { mobileMenu.classList.toggle("hidden"); }); produkBtn.addEventListener("click", function() { produkMenu.classList.toggle("hidden"); }); mobileProdukBtn.addEventListener("click", function() { mobileProdukMenu.classList.toggle("hidden"); }); function showProduct(productId) { productCards.forEach(function(card) { card.classList.add("hidden"); }); const selectedProduct = document.getElementById(productId); selectedProduct.classList.remove("hidden"); document.getElementById("produk").scrollIntoView({ behavior: "smooth" }); mobileMenu.classList.add("hidden"); mobileProdukMenu.classList.add("hidden"); produkMenu.classList.add("hidden"); } productButtons.forEach(function(button) { button.addEventListener("click", function() { showProduct(button.dataset.product); }); }); mobileProductButtons.forEach(function(button) { button.addEventListener("click", function() { showProduct(button.dataset.product); }); }); </script>
+
+</body> </html>
